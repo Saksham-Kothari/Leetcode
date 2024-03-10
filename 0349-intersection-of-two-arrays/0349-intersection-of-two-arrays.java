@@ -1,9 +1,27 @@
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        Set<Integer> set1 = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
-        Set<Integer> set2 = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
+        Set<Integer> set1 = new HashSet<>();
+        for (int n : nums1) {
+            set1.add(n);
+        }
 
-        return set1.stream().filter(set2::contains).mapToInt(Integer::intValue).toArray();
+        Set<Integer> set2 = new HashSet<>();
+        for (int n : nums2) {
+            set2.add(n);
+        }
+
+        List<Integer> resultList = new ArrayList<>();
+        for (int n : set1) {
+            if (set2.contains(n)) {
+                resultList.add(n);
+            }
+        }
+
+        int[] result = new int[resultList.size()];
+        for (int i = 0; i < resultList.size(); i++) {
+            result[i] = resultList.get(i);
+        }
+
+        return result;
     }
-
 }
